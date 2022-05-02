@@ -11,7 +11,7 @@ function checkFile(ctx) {
     }
 }
 
-const bot = new Telegraf(process.env.BOT_TOKEN)
+const bot = new Telegraf('5305598864:AAG0XZ8GloSlpo8Vc6NUoaGvcrrxdj-AUM4')
 bot.start((ctx) => ctx.reply(text.commands))
 bot.help((ctx) => ctx.reply(text.commands))
 bot.on('document', (ctx) => checkFile(ctx))
