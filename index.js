@@ -34,11 +34,11 @@ bot.action('uploadCV', async (ctx) => {
         await ctx.replyWithHTML('<b>Выберите категорию</b>', Markup.inlineKeyboard(
             [
                 [Markup.button.callback('UX\\UI designer ', 'ux_ui_category')],
-                [Markup.button.callback('3D designer', '3d_designer_category')]
-                    [Markup.button.callback('Frontend developer', 'frontend_category')]
-                    [Markup.button.callback('Backend developer', 'backend_category')]
-                    [Markup.button.callback('QA software', 'qa_category')]
-                    [Markup.button.callback('Marketing & PR', 'marketing_category')]
+                [Markup.button.callback('3D designer', '3d_designer_category')],
+                [Markup.button.callback('Frontend developer', 'frontend_category')],
+                [Markup.button.callback('Backend developer', 'backend_category')],
+                [Markup.button.callback('QA software', 'qa_category')],
+                [Markup.button.callback('Marketing & PR', 'marketing_category')],
             ]
         ))
     } catch(e) {
@@ -46,9 +46,9 @@ bot.action('uploadCV', async (ctx) => {
     }
 })
 
-bot.action('it_category', async (ctx) => {
-
-})
+// bot.action('it_category', async (ctx) => {
+//
+// })
 bot.launch()
 
 
