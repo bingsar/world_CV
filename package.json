@@ -2,7 +2,8 @@
   "name": "worldcv",
   "version": "1.0.0",
   "description": "Easy job connector",
-  "main": "index.js",
+  "author": "bingsar",
+  "license": "ISC",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
@@ -14,8 +15,5 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
-  },
-  "keywords": [],
-  "author": "bingsar",
-  "license": "ISC"
+  }
 }
