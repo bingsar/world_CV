@@ -3,6 +3,16 @@ require('dotenv').config()
 
 const text = require('./const')
 
+function checkFile(ctx) {
+    const fileUploaded = ctx.message.document
+
+    if (fileUploaded.mime_type !== 'application/pdf') {
+        return ctx.reply('Загрузите резюме в формате .pdf')
+    } else {
+        return ctx.reply('Ваше резюме было загружено. Спасибо')
+    }
+}
+
 const bot = new Telegraf('process.env.BOT_TOKEN')
 bot.start((ctx) => ctx.reply(text.commands))
 bot.help((ctx) => ctx.reply(text.commands))
@@ -44,16 +54,6 @@ bot.action('ux_ui_category', async (ctx) => {
         console.error(e)
     }
 })
-
-// function checkFile(ctx) {
-//     const fileUploaded = ctx.message.document
-//
-//     if (fileUploaded.mime_type !== 'application/pdf') {
-//         return ctx.reply('Загрузите резюме в формате .pdf')
-//     } else {
-//         return ctx.reply('Ваше резюме было загружено. Спасибо')
-//     }
-// }
 
 // bot.action('it_category', async (ctx) => {
 //

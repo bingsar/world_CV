@@ -1,7 +1,7 @@
 {
   "name": "worldcv",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easy job connector",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
