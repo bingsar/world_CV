@@ -47,7 +47,7 @@ bot.action('uploadCV', async (ctx) => {
 })
 bot.action('ux_ui_category', async (ctx) => {
     try {
-        await ctx.replyWithQuiz(['Ваше ФИО'], ['Tony', 'Markone'])
+        await ctx.replyWithHTML('hey')
     } catch (e) {
         console.error(e)
     }
