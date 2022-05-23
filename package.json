@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "dotenv": "^16.0.0",
-    "telegraf": "^4.7.0",
-    "nodemon": "^2.0.16"
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.16",
+    "telegraf": "^4.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"
