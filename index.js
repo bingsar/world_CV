@@ -13,8 +13,6 @@ const quizAbout = new Composer()
 const quizGetFile = new Composer()
 const quizSendData = new Composer()
 
-
-
 require('dotenv').config()
 
 let pool = mysql.createPool({
@@ -30,10 +28,11 @@ bot.start(async (ctx) => {
             [Markup.button.callback('Да', 'start_quiz')],
             [Markup.button.callback('Меню', 'button_menu')]
         ])
-        )
+    )
 })
 
 bot.action('button_menu', async (ctx) => {
+    await ctx.deleteMessage()
     await ctx.replyWithHTML('<i>Меню</i>', Markup.keyboard([
         ['Отправить заявку', 'О Hubbler'],
         ['Сообщения']
@@ -41,12 +40,16 @@ bot.action('button_menu', async (ctx) => {
 })
 
 bot.hears('О Hubbler', async (ctx) => {
+    await ctx.deleteMessage()
+    await ctx.deleteMessage(ctx.message.message_id-1)
     await ctx.replyWithHTML(`\r\n\r\n<b>Hubbler</b> это рекрутинг команда из высококлассных digital специалистов.\r\n\r\nПрофессиональная экспертиза и знание индустрии изнутри позволяют нам объединять талантливых специалистов и ведущие технологичные компании.`, Markup.inlineKeyboard([
         [Markup.button.callback('Узнать больше', 'link_to_website')]
     ]))
 })
 
 bot.hears('Сообщения', async (ctx) => {
+    await ctx.deleteMessage()
+    await ctx.deleteMessage(ctx.message.message_id-1)
     await ctx.replyWithHTML('Нет новых сообщений и уведомлений.', Markup.inlineKeyboard([
         [Markup.button.callback('Отправь нам свою заявку', 'start_quiz')]
     ]))
@@ -54,6 +57,8 @@ bot.hears('Сообщения', async (ctx) => {
 bot.help((ctx) => ctx.reply(text.commands))
 
 bot.hears('Отправить заявку', async (ctx) => {
+    await ctx.deleteMessage()
+    await ctx.deleteMessage(ctx.message.message_id-1)
     try {
         await ctx.replyWithHTML('<b>Какая специализация вас интересует?</b>', Markup.inlineKeyboard(
             [
@@ -68,7 +73,7 @@ bot.hears('Отправить заявку', async (ctx) => {
     }
 })
 bot.action('start_quiz', async (ctx) => {
-
+    await ctx.deleteMessage()
     try {
         await ctx.replyWithHTML('<b>Какая специализация вас интересует?</b>', Markup.inlineKeyboard(
             [
@@ -85,6 +90,7 @@ bot.action('start_quiz', async (ctx) => {
 
 
 bot.action('data_science', async (ctx) => {
+  await ctx.deleteMessage()
     try {
         await ctx.replyWithHTML('<b>Выберите подкатегорию</b>', Markup.inlineKeyboard([
                 [Markup.button.callback('A/B Testing', `sub_ab_testing`)],
@@ -107,6 +113,7 @@ bot.action('data_science', async (ctx) => {
     }
 })
 bot.action('design', async (ctx) => {
+  await ctx.deleteMessage()
     try {
         await ctx.replyWithHTML('<b>Выберите подкатегорию</b>', Markup.inlineKeyboard([
                 [Markup.button.callback('2D Animation', `sub_2d_animation`)],
@@ -136,6 +143,7 @@ bot.action('design', async (ctx) => {
     }
 })
 bot.action('it', async (ctx) => {
+  await ctx.deleteMessage()
     try {
         await ctx.replyWithHTML('<b>Выберите подкатегорию</b>', Markup.inlineKeyboard([
                 [Markup.button.callback('Applications Development', `sub_application_development`)],
@@ -158,6 +166,7 @@ bot.action('it', async (ctx) => {
     }
 })
 bot.action('software', async (ctx) => {
+  await ctx.deleteMessage()
     try {
         await ctx.replyWithHTML('<b>Выберите подкатегорию</b>', Markup.inlineKeyboard([
                 [Markup.button.callback('AR/VR Development', `sub_ar_vr_development`)],
@@ -186,6 +195,8 @@ bot.action('software', async (ctx) => {
 })
 
 quizFio.action(/sub_+/,async (ctx) => {
+  await ctx.deleteMessage()
+
     ctx.wizard.state.data = {}
     ctx.wizard.state.data.username = ctx.from.username
     ctx.wizard.state.data.first_name = ctx.from.first_name
@@ -208,6 +219,8 @@ quizFio.action(/sub_+/,async (ctx) => {
 })
 
 quizEmail.on('text', async (ctx) => {
+  await ctx.deleteMessage()
+    ctx.deleteMessage(ctx.message.message_id-1)
     ctx.wizard.state.data.chatId = ctx.message.chat.id
     console.log('enterEmail - ' + ctx.wizard.cursor)
     console.log(ctx.wizard.state.data.subcategory)
@@ -228,6 +241,7 @@ quizEmail.on('text', async (ctx) => {
 })
 
 quizPhone.action('back_on_email', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('enterPhone - ' + ctx.wizard.cursor)
     ctx.wizard.selectStep(0)
     try {
@@ -241,6 +255,7 @@ quizPhone.action('back_on_email', async (ctx) => {
 })
 
 quizPhone.action(/contact_+/, async (ctx) => {
+  await ctx.deleteMessage()
     console.log('enterPhone - ' + ctx.wizard.cursor)
     let contactType = ctx.match.input.substring(8)
     let telegramId = ctx.from.username
@@ -283,7 +298,8 @@ quizPhone.action(/contact_+/, async (ctx) => {
 })
 
 quizLocation.on('text', async (ctx) => {
-
+  await ctx.deleteMessage()
+    ctx.deleteMessage(ctx.message.message_id-1)
     console.log('enterLocation - ' + ctx.wizard.cursor)
     console.log('message - ' + ctx.message.text)
     if ( ctx.wizard.state.data.quizType === 'mobile' ) {
@@ -306,6 +322,7 @@ quizLocation.on('text', async (ctx) => {
 })
 
 quizLocation.action('user_no', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('enterLocation - ' + ctx.wizard.cursor)
     try {
         await ctx.replyWithHTML('<b>Введите актуальный username в telegram</b>')
@@ -317,6 +334,7 @@ quizLocation.action('user_no', async (ctx) => {
 })
 
 quizLocation.action('user_yes', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('enterLocation - ' + ctx.wizard.cursor)
     ctx.wizard.state.data.quizContactTelegram = ctx.from.username
     ctx.wizard.selectStep(3)
@@ -332,6 +350,7 @@ quizLocation.action('user_yes', async (ctx) => {
 })
 
 quizLocation.action('back_on_phone', async (ctx) => {
+  await ctx.deleteMessage()
     ctx.wizard.selectStep(1)
     console.log('enterEmail - ' + ctx.wizard.cursor)
 
@@ -351,7 +370,7 @@ quizLocation.action('back_on_phone', async (ctx) => {
 })
 
 quizReadyRelocate.action('back_on_location', async (ctx) => {
-
+  await ctx.deleteMessage()
     ctx.wizard.selectStep(1)
     console.log('back_enterRelocate - ' + ctx.wizard.cursor)
 
@@ -371,6 +390,8 @@ quizReadyRelocate.action('back_on_location', async (ctx) => {
 })
 
 quizReadyRelocate.on('text', async (ctx) => {
+  await ctx.deleteMessage()
+    ctx.deleteMessage(ctx.message.message_id-1)
     console.log('quizReadyRelocate - ' + ctx.wizard.cursor)
 
     ctx.wizard.state.data.quizLocation = ctx.message.text
@@ -390,6 +411,7 @@ quizReadyRelocate.on('text', async (ctx) => {
 })
 
 quizCV.action('back_on_relocate', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('quizCV - ' + ctx.wizard.cursor)
     try{
         await ctx.replyWithHTML('<b>Какое твоё текущее местоположение?</b>', Markup.inlineKeyboard([
@@ -404,6 +426,7 @@ quizCV.action('back_on_relocate', async (ctx) => {
 })
 
 quizCV.action(/relocate_+/, async (ctx) => {
+  await ctx.deleteMessage()
     console.log('quizCV - ' + ctx.wizard.cursor)
 
     ctx.wizard.state.data.quizReadyRelocate = ctx.match.input.substring(9)
@@ -423,6 +446,7 @@ quizCV.action(/relocate_+/, async (ctx) => {
 })
 
 quizFile.action('back_on_cv', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('back_quizFile - ' + ctx.wizard.cursor)
 
     try{
@@ -443,6 +467,7 @@ quizFile.action('back_on_cv', async (ctx) => {
 })
 
 quizFile.action(/add_+/, async (ctx) => {
+  await ctx.deleteMessage()
     console.log('quizFile - ' + ctx.wizard.cursor)
 
     let fileAddMethod = ctx.match.input.substring(4)
@@ -468,6 +493,7 @@ quizFile.action(/add_+/, async (ctx) => {
 })
 
 quizAbout.action('back_on_file', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('back_quizAbout - ' + ctx.wizard.cursor)
 
     try {
@@ -486,6 +512,8 @@ quizAbout.action('back_on_file', async (ctx) => {
 })
 
 quizAbout.on('text', async (ctx) => {
+  await ctx.deleteMessage()
+    ctx.deleteMessage(ctx.message.message_id-1)
     console.log('quizAbout_text - ' + ctx.wizard.cursor)
     ctx.wizard.state.data.quizResume = ctx.message.text
     try {
@@ -506,6 +534,7 @@ quizAbout.on('text', async (ctx) => {
 })
 
 quizAbout.on('document', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('quizAbout_document - ' + ctx.wizard.cursor)
     if (ctx.message.document.file_name) {
         ctx.wizard.state.data.quizResume = ctx.message.document.file_name
@@ -538,6 +567,7 @@ quizAbout.on('document', async (ctx) => {
 })
 
 quizGetFile.action('back_on_about', async (ctx) => {
+  await ctx.deleteMessage()
     console.log('back_quizGetFile - ' + ctx.wizard.cursor)
 
     try {
@@ -556,6 +586,7 @@ quizGetFile.action('back_on_about', async (ctx) => {
 })
 
 quizGetFile.on('document', async (ctx) => {
+  await ctx.deleteMessage()
     await ctx.wizard.selectStep(7)
     console.log('quizGetFile_document - ' + ctx.wizard.cursor)
 
@@ -591,6 +622,8 @@ quizGetFile.on('document', async (ctx) => {
 })
 
 quizGetFile.on('text', async (ctx) => {
+  await ctx.deleteMessage()
+    ctx.deleteMessage(ctx.message.message_id-1)
     console.log('quizGetFile_text - ' + ctx.wizard.cursor)
     let contact
 
@@ -635,6 +668,7 @@ quizGetFile.on('text', async (ctx) => {
 })
 
 quizSendData.action('sendData', async (ctx) => {
+  await ctx.deleteMessage()
     console.log(ctx.wizard.state.data)
     try {
         let query="INSERT INTO users(chat_id, telegram_first_name, telegram_last_name, telegram_id, chosen_category, name, contact, location, relocation, cv_type, cv ,about) VALUES (?)";
@@ -648,7 +682,7 @@ quizSendData.action('sendData', async (ctx) => {
             encodeURI(ctx.wizard.state.data.contact),
             encodeURI(ctx.wizard.state.data.quizLocation),
             encodeURI(ctx.wizard.state.data.quizReadyRelocate),
-            encodeURI(ctx.wizard.state.data.quizType),
+            encodeURI(ctx.wizard.state.data.quizCV),
             encodeURI(ctx.wizard.state.data.quizResume),
             encodeURI(ctx.wizard.state.data.quizAbout),
         ]
