@@ -28,7 +28,7 @@ let pool = mysql.createPool({
 });
 
 bot.start(async (ctx) => {
-    await ctx.replyWithHTML(`Ответь на несколько вопросов и приложи своё резюме или портфолио.\r\n\r\nМы начнём подбирать для тебя подходящие вакантные позиции как только получим твою заявку.\r\n\r\n`,
+    await ctx.replyWithHTML(`Ответь на несколько вопросов и приложи своё резюме или портфолио.\r\n\r\nМы начнём подбирать для тебя подходящие вакантные позиции, как только получим твою заявку.\r\n\r\n`,
         Markup.inlineKeyboard([
             [Markup.button.callback('Отправить заявку', 'start_quiz')],
             [Markup.button.callback('Меню', 'button_menu')]
