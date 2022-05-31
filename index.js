@@ -69,12 +69,13 @@ categoryList.action('start_quiz', async (ctx) => {
 
     console.log('start_quiz - ' + ctx.wizard.cursor)
 
-    ctx.wizard.state.data = {}
-    ctx.wizard.state.data.fileValidation = false
-    ctx.wizard.state.data.username = ctx.from.username
-    ctx.wizard.state.data.first_name = ctx.from.first_name
-    ctx.wizard.state.data.last_name = ctx.from.last_name
     try {
+        ctx.wizard.state.data = {}
+        ctx.wizard.state.data.fileValidation = false
+        ctx.wizard.state.data.username = ctx.from.username
+        ctx.wizard.state.data.first_name = ctx.from.first_name
+        ctx.wizard.state.data.last_name = ctx.from.last_name
+
         await ctx.replyWithHTML('<b>Какая специализация вас интересует?</b>', Markup.inlineKeyboard(
             [
                 [Markup.button.callback('Data Science & Analytics', 'data_science')],
@@ -88,7 +89,6 @@ categoryList.action('start_quiz', async (ctx) => {
     } catch(e) {
         console.error(e)
     }
-
 
     return ctx.wizard.next()
 })
@@ -138,8 +138,7 @@ choseSubCategory.action('data_science', async (ctx) => {
                 [Markup.button.callback('Machine Learning', `sub_machine_learning`)],
                 [Markup.button.callback('Другое', `custom_category`)],
 
-
-                [Markup.button.callback('⬅ Назад', `start_quiz`)]
+                [ctx.wizard.state.data.whatEditing === 'category' ? Markup.button.callback('⬅ Назад', `editCategory`) : Markup.button.callback('⬅ Назад', `start_quiz`)]
             ]
         ))
     } catch (e) {
@@ -177,7 +176,7 @@ choseSubCategory.action('design', async (ctx) => {
                 [Markup.button.callback('Product & Industrial Design', `sub_product_industrial_design`)],
                 [Markup.button.callback('Другое', `custom_category`)],
 
-                [Markup.button.callback('⬅ Назад', `start_quiz`)]
+            [ctx.wizard.state.data.whatEditing === 'category' ? Markup.button.callback('⬅ Назад', `editCategory`) : Markup.button.callback('⬅ Назад', `start_quiz`)]
             ]
         ))
     } catch (e) {
@@ -208,7 +207,7 @@ choseSubCategory.action('it', async (ctx) => {
                 [Markup.button.callback('Systems Engineering', `sub_systems_engineering`)],
                 [Markup.button.callback('Другое', `custom_category`)],
 
-                [Markup.button.callback('⬅ Назад', `start_quiz`)]
+            [ctx.wizard.state.data.whatEditing === 'category' ? Markup.button.callback('⬅ Назад', `editCategory`) : Markup.button.callback('⬅ Назад', `start_quiz`)]
             ]
         ))
     } catch (e) {
@@ -244,7 +243,7 @@ choseSubCategory.action('software', async (ctx) => {
                 [Markup.button.callback('Full Stack Development', `sub_full_stack_development`)],
                 [Markup.button.callback('Другое', `custom_category`)],
 
-                [Markup.button.callback('⬅ Назад', `start_quiz`)]
+            [ctx.wizard.state.data.whatEditing === 'category' ? Markup.button.callback('⬅ Назад', `editCategory`) : Markup.button.callback('⬅ Назад', `start_quiz`)]
             ]
         ))
     } catch (e) {
@@ -255,16 +254,23 @@ choseSubCategory.action('software', async (ctx) => {
 })
 
 quizFio.action('custom_category', async (ctx) => {
+    await ctx.deleteMessage()
     console.log('action_sendCategory - ' + ctx.wizard.cursor)
     await ctx.replyWithHTML('Ведите вашу специальность', Markup.inlineKeyboard([
-        [Markup.button.callback('⬅ Назад', `start_quiz`)]
+        [ctx.wizard.state.data.whatEditing === 'category' ? Markup.button.callback('⬅ Назад', `backToEdits`) : Markup.button.callback('⬅ Назад', `start_quiz`)]
     ]))
-    await ctx.wizard.selectStep(1)
+    if (ctx.wizard.state.data.whatEditing === 'category') {
+        await ctx.wizard.selectStep(11)
+    } else {
+        await ctx.wizard.selectStep(1)
+    }
+
     return ctx.wizard.next()
 })
 
 quizFio.on('text', async (ctx) => {
     await ctx.deleteMessage()
+    await ctx.deleteMessage(ctx.message.message_id-1)
     ctx.wizard.state.data = {}
     ctx.wizard.state.data.username = ctx.from.username
     ctx.wizard.state.data.first_name = ctx.from.first_name
@@ -378,10 +384,6 @@ quizPhone.action(/contact_+/, async (ctx) => {
 
     ctx.wizard.state.data.quizType = contactType
 
-    if (ctx.wizard.state.data.whatEditing === 'contact' && contactType !== 'telegram') {
-        ctx.wizard.selectStep(7)
-    }
-
     if (contactType === 'mobile') {
         try {
             await ctx.replyWithHTML('<b>Введи номер твоего телефона</b>', Markup.inlineKeyboard([
@@ -454,6 +456,8 @@ quizLocation.on('text', async (ctx) => {
     console.log('enterLocation_text - ' + ctx.wizard.cursor)
     console.log('message - ' + ctx.message.text)
 
+    let contact
+
     if ( ctx.wizard.state.data.quizType === 'mobile' ) {
         ctx.wizard.state.data.quizContactMobile = ctx.message.text
     }
@@ -467,9 +471,40 @@ quizLocation.on('text', async (ctx) => {
     }
 
     try{
-        await ctx.replyWithHTML('<b>Какое твоё текущее местоположение?</b>',Markup.inlineKeyboard([
-            [Markup.button.callback('⬅ Назад', 'back_on_location')]
-        ]))
+
+        if (ctx.wizard.state.data.whatEditing === 'contact') {
+
+            if (ctx.wizard.state.data.quizType === 'mobile') {
+                contact = ctx.wizard.state.data.quizContactMobile
+            }
+            if (ctx.wizard.state.data.quizType === 'email') {
+                contact = ctx.wizard.state.data.quizContactEmail
+            }
+            if (ctx.wizard.state.data.quizType === 'telegram') {
+                contact = `@${ctx.wizard.state.data.quizContactTelegram}`
+            }
+
+            ctx.wizard.state.data.contact = contact
+
+            await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
+            await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
+            await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
+            await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
+            await ctx.replyWithHTML(`<b>Местоположение: </b>${ctx.wizard.state.data.quizLocation}\r\n`)
+            await ctx.replyWithHTML(`<b>Готовы к переезду?: </b>${ctx.wizard.state.data.quizReadyRelocate}\r\n`)
+            await ctx.replyWithHTML(`<b>Резюме или Портфолио: </b>${ctx.wizard.state.data.quizResume}\r\n`)
+            await ctx.replyWithHTML(`<b>О себе: </b>${ctx.wizard.state.data.quizAbout}\r\n`)
+            await ctx.replyWithHTML(`<b>Подтвердите отправку</b>`, Markup.inlineKeyboard([
+                [Markup.button.callback('Завершить и отправить', 'sendData')],
+                [Markup.button.callback('Редактировать', 'edits')]
+            ]))
+            await ctx.wizard.selectStep(10)
+        } else {
+            await ctx.replyWithHTML('<b>Какое твоё текущее местоположение?</b>',Markup.inlineKeyboard([
+                [Markup.button.callback('⬅ Назад', 'back_on_location')]
+            ]))
+        }
+
     } catch (e) {
         console.error(e)
     }
@@ -757,8 +792,9 @@ quizAbout.on('text', async (ctx) => {
     try {
         if (ctx.wizard.state.data.quizCV === 'cv_link' && ctx.wizard.state.data.whatEditing !== 'resume') {
             await ctx.replyWithHTML('<b>Расскажи о себе (опционально)</b>', Markup.inlineKeyboard([
-                [Markup.button.callback('⬅ Назад', 'back_on_about')],
-                [Markup.button.callback('➡ Пропустить', 'forward_on_about')]
+                [Markup.button.callback('➡ Пропустить', 'forward_on_about')],
+                [Markup.button.callback('⬅ Назад', 'back_on_about')]
+
             ]))
         } else if (ctx.wizard.state.data.quizCV === 'cv_link' && ctx.wizard.state.data.whatEditing === 'resume') {
             console.log('edits_on_quizAbout - ' + ctx.wizard.cursor)
@@ -814,8 +850,8 @@ quizAbout.on('document', async (ctx) => {
 
         if (fileUploaded.mime_type === 'application/pdf' && ctx.wizard.state.data.quizCV === 'cv_pdf' && ctx.wizard.state.data.whatEditing !== 'resume') {
             await ctx.replyWithHTML('<b>Расскажи о себе (опционально)</b>', Markup.inlineKeyboard([
-                [Markup.button.callback('⬅ Назад', 'back_on_about')],
-                [Markup.button.callback('➡ Пропустить', 'forward_on_about')]
+                [Markup.button.callback('➡ Пропустить', 'forward_on_about')],
+                [Markup.button.callback('⬅ Назад', 'back_on_about')]
             ]))
 
             ctx.wizard.state.data.fileValidation = true
@@ -985,8 +1021,8 @@ quizGetFile.on('document', async (ctx) => {
 
         if (fileUploaded.mime_type === 'application/pdf' && ctx.wizard.state.data.quizCV === 'cv_pdf' && ctx.wizard.state.data.whatEditing !== 'resume') {
             await ctx.replyWithHTML('<b>Расскажи о себе (опционально)</b>', Markup.inlineKeyboard([
-                [Markup.button.callback('⬅ Назад', 'back_on_about')],
-                [Markup.button.callback('➡ Пропустить', 'forward_on_about')]
+                [Markup.button.callback('➡ Пропустить', 'forward_on_about')],
+                [Markup.button.callback('⬅ Назад', 'back_on_about')]
             ]))
             if (ctx.message.document.file_name) {
                 ctx.wizard.state.data.quizResume = ctx.message.document.file_name
@@ -1348,7 +1384,7 @@ quizEdit.action(/sub_+/, async (ctx) => {
 quizEdit.action('custom_category', async (ctx) => {
     console.log('action_sendCategory - ' + ctx.wizard.cursor)
     await ctx.replyWithHTML('Ведите вашу специальность', Markup.inlineKeyboard([
-        [Markup.button.callback('⬅ Назад', `backToEdits`)]
+        [Markup.button.callback('⬅ Назад', `editCategory`)]
     ]))
     await ctx.wizard.selectStep(11)
     return ctx.wizard.next()
@@ -1495,6 +1531,7 @@ quizSendData.action('sendData', async (ctx) => {
             console.log(field);
         });
         await ctx.replyWithHTML('<b>Данные успешно отправлены!</b>')
+        ctx.wizard.state.data = {}
         await ctx.replyWithHTML('<i>Меню</i>', Markup.inlineKeyboard([
             [Markup.button.callback('Отправить заявку', 'start_quiz')],
             [Markup.button.callback('О Hubbler', 'about'), Markup.button.callback('Сообщения', 'messages')]
