@@ -1509,7 +1509,6 @@ quizBackOnEdits.action(/relocate_+/, async (ctx) => {
 quizSendData.action('sendData', async (ctx) => {
     console.log('quizSendData - ' + ctx.wizard.cursor)
     await ctx.deleteMessage()
-    await ctx.deleteMessage(ctx.message.message_id-1)
     console.log(ctx.wizard.state.data)
     try {
         let query="INSERT INTO users(chat_id, telegram_first_name, telegram_last_name, telegram_id, chosen_category, name, contact, location, relocation, cv_type, cv ,about) VALUES (?)";
