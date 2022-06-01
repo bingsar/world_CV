@@ -1161,7 +1161,6 @@ quizSendData.on('text', async (ctx) => {
 
 quizSendData.action('edits', async (ctx) => {
     await ctx.deleteMessage()
-    await ctx.deleteMessage()
     ctx.wizard.state.data.whatEditing = {}
     console.log('edits - ' + ctx.wizard.cursor)
     ctx.replyWithHTML('<b>Что редактируем?</b>', Markup.inlineKeyboard([
