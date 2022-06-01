@@ -97,7 +97,7 @@ categoryList.action('start_quiz', async (ctx) => {
 choseSubCategory.action('edits', async (ctx) => {
     console.log('category_list_edits - ' + ctx.wizard.cursor)
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -431,7 +431,7 @@ quizPhone.action(/contact_+/, async (ctx) => {
 quizPhone.action('backToEdits', async (ctx) => {
     console.log('back_to_edits_on_quizPhone - ' + ctx.wizard.cursor)
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -689,7 +689,7 @@ quizFile.on('text', async (ctx) => {
 quizFile.action('backToEdits', async (ctx) => {
     console.log('back_to_edits_on_quizFile - ' + ctx.wizard.cursor)
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -798,7 +798,7 @@ quizAbout.on('text', async (ctx) => {
             ]))
         } else if (ctx.wizard.state.data.quizCV === 'cv_link' && ctx.wizard.state.data.whatEditing === 'resume') {
             console.log('edits_on_quizAbout - ' + ctx.wizard.cursor)
-            await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+            await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
             await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
             await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
             await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -871,7 +871,7 @@ quizAbout.on('document', async (ctx) => {
             ctx.wizard.state.data.fileValidation = true
 
             console.log('edits_on_quizAbout_on_document - ' + ctx.wizard.cursor)
-            await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+            await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
             await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
             await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
             await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -944,7 +944,7 @@ quizGetFile.action('forward_on_about', async (ctx) => {
 
         ctx.wizard.state.data.contact = contact
 
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1042,7 +1042,7 @@ quizGetFile.on('document', async (ctx) => {
             ctx.wizard.state.data.fileValidation = true
 
             console.log('edits_on_quizAbout_on_document - ' + ctx.wizard.cursor)
-            await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+            await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
             await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
             await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
             await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1132,7 +1132,7 @@ quizSendData.action('forward_on_about', async (ctx) => {
 
         ctx.wizard.state.data.contact = contact
 
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1161,6 +1161,7 @@ quizSendData.on('text', async (ctx) => {
 
 quizSendData.action('edits', async (ctx) => {
     await ctx.deleteMessage()
+    await ctx.deleteMessage()
     ctx.wizard.state.data.whatEditing = {}
     console.log('edits - ' + ctx.wizard.cursor)
     ctx.replyWithHTML('<b>Что редактируем?</b>', Markup.inlineKeyboard([
@@ -1183,7 +1184,7 @@ quizEdit.action('back_send_data', async (ctx) => {
 
     console.log('back_on_edits - ' + ctx.wizard.cursor)
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1421,7 +1422,7 @@ quizEdit.on('text', async (ctx) => {
 quizBackOnEdits.action('backToEdits', async (ctx) => {
     console.log('back_to_edits - ' + ctx.wizard.cursor)
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1454,7 +1455,7 @@ quizBackOnEdits.on('text', async (ctx) => {
             ctx.wizard.state.data.quizAbout = ctx.message.text
         }
 
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1483,7 +1484,7 @@ quizBackOnEdits.action(/relocate_+/, async (ctx) => {
     ctx.wizard.state.data.quizReadyRelocate = ctx.match.input.substring(9)
 
     try {
-        await ctx.replyWithHTML(`<b>Проверьте данные и подтвердите отправку</b>\r\n\r\n`)
+        await ctx.replyWithHTML(`<i>Проверьте данные и подтвердите отправку</i>\r\n\r\n`)
         await ctx.replyWithHTML(`<b>Имя: </b>${ctx.wizard.state.data.quizName}\r\n`)
         await ctx.replyWithHTML(`<b>Контакт: </b>${ctx.wizard.state.data.contact}\r\n`)
         await ctx.replyWithHTML(`<b>Специализация: </b>${ctx.wizard.state.data.subcategoryText}\r\n`)
@@ -1508,6 +1509,7 @@ quizBackOnEdits.action(/relocate_+/, async (ctx) => {
 quizSendData.action('sendData', async (ctx) => {
     console.log('quizSendData - ' + ctx.wizard.cursor)
     await ctx.deleteMessage()
+    await ctx.deleteMessage(ctx.message.message_id-1)
     console.log(ctx.wizard.state.data)
     try {
         let query="INSERT INTO users(chat_id, telegram_first_name, telegram_last_name, telegram_id, chosen_category, name, contact, location, relocation, cv_type, cv ,about) VALUES (?)";
@@ -1543,574 +1545,7 @@ quizSendData.action('sendData', async (ctx) => {
     return ctx.scene.leave()
 })
 
-
-// chooseCategory.action('ux_ui_category', async (ctx) => {
-//
-//     let category = 'UX/UI designer'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = 'ux_ui_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'ux_ui_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Загрузите резюме</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'ux_ui_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     console.log('category - ' + ctx.wizard.cursor)
-//     ctx.wizard.state.data.chooseCategory = 'ux_ui_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//
-//     return ctx.wizard.next()
-// })
-// chooseCategory.action('3d_designer_category', async (ctx) => {
-//     let category = '3D designer'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = '3d_designer_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = '3d_designer_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = '3d_designer_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     ctx.wizard.state.data.chooseCategory = '3d_designer_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.next()
-// })
-// chooseCategory.action('frontend_category', async (ctx) => {
-//
-//     let category = 'Frontend developer'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = 'frontend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'frontend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'frontend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     ctx.wizard.state.data.chooseCategory = 'frontend_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.next()
-// })
-// chooseCategory.action('backend_category', async (ctx) => {
-//
-//     let category = 'Backend developer'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = 'backend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'backend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'backend_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     ctx.wizard.state.data.chooseCategory = 'backend_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.next()
-// })
-// chooseCategory.action('qa_category', async (ctx) => {
-//
-//     let category = 'QA software'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = 'qa_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'qa_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'qa_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     ctx.wizard.state.data.chooseCategory = 'qa_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.next()
-// })
-// chooseCategory.action('marketing_category', async (ctx) => {
-//
-//     let category = 'Marketing & PR'
-//
-//     if (ctx.wizard.state.data.quizFio && !ctx.wizard.state.data.quizEmail) {
-//         ctx.wizard.state.data.chooseCategory = 'marketing_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//         return ctx.wizard.selectStep(4)
-//     }
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'marketing_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.chooseCategory = 'marketing_category'
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ])
-//         )
-//         await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     ctx.wizard.state.data.chooseCategory = 'marketing_category'
-//
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_category')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.next()
-// })
-
-// quizFio.on('text', async (ctx) => {
-//
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     let category = categoryFormat(ctx.wizard.state.data.chooseCategory)
-//
-//     if (ctx.wizard.state.data.quizEmail && !ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.quizFio = ctx.message.text
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_email')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//         return ctx.wizard.selectStep(5)
-//     }
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.quizFio = ctx.message.text
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     console.log('fio - ' + ctx.wizard.cursor)
-//     ctx.wizard.state.data.quizFio = ctx.message.text
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_fio')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш email</b>`)
-//     return ctx.wizard.next()
-// })
-
-// quizEmail.on('text', async (ctx) => {
-//     console.log(ctx.message.text)
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     let category = categoryFormat(ctx.wizard.state.data.chooseCategory)
-//
-//     if (ctx.wizard.state.data.quizPhone) {
-//         ctx.wizard.state.data.quizEmail = ctx.message.text
-//         await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>\r\n`, Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//             ]),
-//         )
-//         await ctx.replyWithHTML(`\r\n\r\n<b>Загрузите Ваше резюме</b>`)
-//         return ctx.wizard.selectStep(6)
-//     }
-//
-//     console.log('email - ' + ctx.wizard.cursor)
-//
-//     ctx.wizard.state.data.quizEmail = ctx.message.text
-//     await ctx.replyWithHTML(`<i>Выбрана категория: ${category}</i>\r\n<i>Ваше ФИО: ${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_email')],
-//         ]),
-//     )
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш телефон</b>`)
-//     return ctx.wizard.next()
-// })
-
-// quizPhone.on('text', async (ctx) => {
-//
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     let category = categoryFormat(ctx.wizard.state.data.chooseCategory)
-//     ctx.wizard.state.data.quizPhone = ctx.message.text
-//     await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>`, Markup.inlineKeyboard(
-//         [
-//             [Markup.button.callback('Редактировать', 'edit_on_phone')],
-//         ])
-//     )
-//
-//     console.log(ctx.wizard.state.data)
-//     await ctx.replyWithHTML(`<b>Загрузите Ваше резюме</b>`)
-//     return ctx.wizard.next()
-// })
-
-// quizCV.on('text', async (ctx) => {
-//
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     await ctx.reply('Загрузите резюме в формате .pdf')
-// })
-//
-// quizCV.on('document', async (ctx) => {
-//
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     let category = categoryFormat(ctx.wizard.state.data.chooseCategory)
-//     ctx.wizard.state.data.quizCV = ctx.message.document.file_name
-//     const fileUploaded = ctx.message.document
-//     if (fileUploaded.mime_type !== 'application/pdf') {
-//         await ctx.reply('Загрузите резюме в формате .pdf')
-//     } else {
-//         await ctx.replyWithHTML(`<i>Выбрана категория: </i><i>${category}</i>\r\n<i>Ваше ФИО: </i><i>${ctx.wizard.state.data.quizFio}</i>\r\n<i>Ваш email: </i><i>${ctx.wizard.state.data.quizEmail}</i>\r\n<i>Ваш телефон: </i><i>${ctx.wizard.state.data.quizPhone}</i>\r\n<i>Ваше резюме загружено. Название файла: </i><i>${ctx.wizard.state.data.quizCV}</i>\r\n\r\n<b>Расскажите о себе</b>`)
-//         return ctx.wizard.next()
-//     }
-// })
-//
-// quizAbout.on('text', async (ctx) => {
-//
-//     if (ctx.message.text === '/menu') {
-//         return ctx.scene.enter('quiz')
-//     }
-//
-//     ctx.wizard.state.data.quizComment = ctx.message.text
-//     console.log(ctx.wizard.state.data)
-//     try {
-//         let query="INSERT INTO users(chat_id, telegram_first_name, telegram_last_name, telegram_id, chosen_category, full_name, email, phone, cv_link, comment) VALUES (?)";
-//         let values = [
-//             encodeURI(ctx.message.chat.id),
-//             encodeURI(ctx.from.first_name),
-//             encodeURI(ctx.from.last_name),
-//             encodeURI(ctx.from.username),
-//             encodeURI(ctx.wizard.state.data.chooseCategory),
-//             encodeURI(ctx.wizard.state.data.quizFio),
-//             encodeURI(ctx.wizard.state.data.quizEmail),
-//             encodeURI(ctx.wizard.state.data.quizPhone),
-//             encodeURI(ctx.wizard.state.data.quizCV),
-//             encodeURI(ctx.wizard.state.data.quizComment),
-//
-//         ]
-//         pool.query(query, ([values]), (err, result, field) => {
-//             console.log(err);
-//             console.log(result);
-//             console.log(field);
-//         });
-//     } catch (e) {
-//         console.error(e)
-//     }
-//     await ctx.replyWithHTML(`Спасибо! \r\n\r\n<b>Ваши данные отправлены</b>\r\nМы свяжемся с Вами сразу после обработки данных`)
-//     return ctx.scene.leave()
-// })
-
-// QUIZ EDITS
-//
-// quizFio.action('edit_on_category', async (ctx) => {
-//     await ctx.replyWithHTML(`<b>Что редактируем?</b>`, Markup.inlineKeyboard([
-//         [Markup.button.callback('Категорию', 'edit_category_on_fio')],
-//     ]))
-// })
-//
-// quizEmail.action('edit_on_fio', async (ctx) => {
-//     await ctx.replyWithHTML(`<b>Что редактируем?</b>`, Markup.inlineKeyboard([
-//         [Markup.button.callback('Категорию', 'edit_category_on_email')],
-//         [Markup.button.callback('ФИО', 'edit_fio_on_email')],
-//     ]))
-// })
-// quizPhone.action('edit_on_email', async (ctx) => {
-//     await ctx.replyWithHTML(`<b>Что редактируем?</b>`, Markup.inlineKeyboard([
-//         [Markup.button.callback('Категорию', 'edit_category_on_phone')],
-//         [Markup.button.callback('ФИО', 'edit_fio_on_phone')],
-//         [Markup.button.callback('Email', 'edit_email_on_phone')],
-//
-//     ]))
-// })
-//
-// quizCV.action('edit_on_phone', async (ctx) => {
-//     await ctx.replyWithHTML(`<b>Что редактируем?</b>`, Markup.inlineKeyboard([
-//         [Markup.button.callback('Категорию', 'edit_category_on_cv')],
-//         [Markup.button.callback('ФИО', 'edit_fio_on_cv')],
-//         [Markup.button.callback('Email', 'edit_email_on_cv')],
-//         [Markup.button.callback('Phone', 'edit_phone_on_cv')],
-//     ]))
-// })
-//
-// // Edit actions
-// quizFio.action('edit_category_on_fio', async (ctx) => {
-//     try {
-//         await ctx.replyWithHTML('<b>Выберите категорию</b>', Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('UX/UI designer', 'ux_ui_category')],
-//                 [Markup.button.callback('3D designer', '3d_designer_category')],
-//                 [Markup.button.callback('Frontend developer', 'frontend_category')],
-//                 [Markup.button.callback('Backend developer', 'backend_category')],
-//                 [Markup.button.callback('QA software', 'qa_category')],
-//                 [Markup.button.callback('Marketing & PR', 'marketing_category')],
-//             ]
-//         ))
-//         return ctx.wizard.selectStep(2)
-//     } catch(e) {
-//         console.error(e)
-//     }
-// })
-//
-// quizEmail.action('edit_category_on_email', async (ctx) => {
-//     try {
-//         await ctx.replyWithHTML('<b>Выберите категорию</b>', Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('UX/UI designer', 'ux_ui_category')],
-//                 [Markup.button.callback('3D designer', '3d_designer_category')],
-//                 [Markup.button.callback('Frontend developer', 'frontend_category')],
-//                 [Markup.button.callback('Backend developer', 'backend_category')],
-//                 [Markup.button.callback('QA software', 'qa_category')],
-//                 [Markup.button.callback('Marketing & PR', 'marketing_category')],
-//             ]
-//         ))
-//         return ctx.wizard.selectStep(2)
-//     } catch(e) {
-//         console.error(e)
-//     }
-// })
-// quizEmail.action('edit_fio_on_email', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.selectStep(3)
-// })
-//
-// quizPhone.action('edit_category_on_phone', async (ctx) => {
-//     try {
-//         await ctx.replyWithHTML('<b>Выберите категорию</b>', Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('UX/UI designer', 'ux_ui_category')],
-//                 [Markup.button.callback('3D designer', '3d_designer_category')],
-//                 [Markup.button.callback('Frontend developer', 'frontend_category')],
-//                 [Markup.button.callback('Backend developer', 'backend_category')],
-//                 [Markup.button.callback('QA software', 'qa_category')],
-//                 [Markup.button.callback('Marketing & PR', 'marketing_category')],
-//             ]
-//         ))
-//         return ctx.wizard.selectStep(2)
-//     } catch(e) {
-//         console.error(e)
-//     }
-// })
-// quizPhone.action('edit_fio_on_phone', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.selectStep(3)
-// })
-// quizPhone.action('edit_email_on_phone', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш Email</b>`)
-//     return ctx.wizard.selectStep(4)
-// })
-//
-//
-// quizCV.action('edit_category_on_cv', async (ctx) => {
-//     try {
-//         await ctx.replyWithHTML('<b>Выберите категорию</b>', Markup.inlineKeyboard(
-//             [
-//                 [Markup.button.callback('UX/UI designer', 'ux_ui_category')],
-//                 [Markup.button.callback('3D designer', '3d_designer_category')],
-//                 [Markup.button.callback('Frontend developer', 'frontend_category')],
-//                 [Markup.button.callback('Backend developer', 'backend_category')],
-//                 [Markup.button.callback('QA software', 'qa_category')],
-//                 [Markup.button.callback('Marketing & PR', 'marketing_category')],
-//             ]
-//         ))
-//         return ctx.wizard.selectStep(2)
-//     } catch(e) {
-//         console.error(e)
-//     }
-// })
-// quizCV.action('edit_fio_on_cv', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваше ФИО</b>`)
-//     return ctx.wizard.selectStep(3)
-// })
-// quizCV.action('edit_email_on_cv', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш Email</b>`)
-//     return ctx.wizard.selectStep(4)
-// })
-// quizCV.action('edit_phone_on_cv', async (ctx) => {
-//     await ctx.replyWithHTML(`\r\n\r\n<b>Введите Ваш Phone</b>`)
-//     return ctx.wizard.selectStep(5)
-// })
-// /EDITS
-
+// Scenes
 const menuScene = new Scenes.WizardScene('personalData', categoryList, choseSubCategory, quizFio, quizEmail, quizPhone, quizLocation, quizReadyRelocate, quizCV, quizFile, quizAbout, quizGetFile, quizSendData, quizEdit, quizBackOnEdits)
 
 const stage = new Scenes.Stage([menuScene])
